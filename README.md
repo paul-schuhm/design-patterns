@@ -8,6 +8,7 @@
 ## Rappels Programmation Orientée Objet
 
 - [Accéder aux démos (live)](./rappels-poo/demo-live/)
+- [Accéder aux corrections d'exercices](./rappels-poo/exercices/)
 
 ## Références
 
