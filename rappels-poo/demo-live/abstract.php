@@ -1,6 +1,6 @@
 <?php
 
-//Une interface c'est une classe abstraite qui ne peut contenir que des méthodes abstraites
+//Une 'interface' (en PHP) c'est une classe abstraite qui ne peut contenir que des méthodes abstraites
 interface C
 {
     //Dans une interface, tout est abstrait par définition
@@ -16,7 +16,7 @@ interface E{
 }
 
 //Une classe peut implémenter plusieurs interfaces
-class ClasseQuiImplementeLInterfaceCDetF implements C, D, E
+class ClasseQuiImplementeLesInterfacesCDetF implements C, D, E
 {
     function c()
     {
@@ -33,13 +33,13 @@ class ClasseQuiImplementeLInterfaceCDetF implements C, D, E
 
 }
 
-//Equivalent à C
+//Equivalent à C (classe abstraite "pure", tout y est abstrait)
 abstract class C2
 {
     abstract function c();
 }
 
-//Une classe abstraite peut contenir des propriétés et des méthodes concrètes (avec implémentation), et au moins une méthode abstraite
+//Une classe abstraite peut contenir des propriétés et des méthodes concrètes (avec implémentation), mais doit avoir au moins une méthode abstraite
 abstract class A
 {
     protected string $a = 'a';
@@ -60,12 +60,6 @@ class B extends A
         return M_PI * $radius * 2;
     }
 }
-
-// class C extends A{
-//     public function foo(){
-//         echo "Implémentation fournie par la classe C" . PHP_EOL;
-//     }
-// }
 
 $b = new B();
 $b->foo();
