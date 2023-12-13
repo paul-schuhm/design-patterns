@@ -2,6 +2,7 @@
 
 - [Design patterns](#design-patterns)
   - [Rappels Programmation Orientée Objet](#rappels-programmation-orientée-objet)
+  - [Design Patterns](#design-patterns-1)
   - [Références](#références)
 
 Supports de cours sur les Design Patterns en programmation orientée objet.
@@ -10,6 +11,10 @@ Supports de cours sur les Design Patterns en programmation orientée objet.
 
 - [Accéder aux démos (live)](./rappels-poo/demo-live/)
 - [Accéder aux corrections d'exercices](./rappels-poo/exercices/)
+
+## Design Patterns
+
+- [Accéder aux démos (live)](./design-patterns/demo-live/) (mare au canards, etc.)
 
 ## Références
 
