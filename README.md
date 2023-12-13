@@ -15,6 +15,7 @@ Supports de cours sur les Design Patterns en programmation orientée objet.
 ## Design Patterns
 
 - [Accéder aux démos (live)](./design-patterns/demo-live/) (mare au canards, etc.)
+- [Accéder aux corrections d'exercices](./design-patterns/exercices/)
 
 ## Références
 
