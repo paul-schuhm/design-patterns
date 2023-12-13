@@ -19,6 +19,8 @@ $shapes = [new Rectangle(1, 2), new Rectangle(3, 4), new Square(1), new Square(5
 //des formes, tant qu'elles implémentent IArea, le code client n'aura aucune raison de changer.
 //Grâce au polymorphisme, le code client (index.php ici) ne dépend pas des détails d'implémentation (implémentations de IArea)
 
+//Code métier
+
 foreach ($shapes as $shape) {
     //Le polymorphisme en action : une même méthode execute du code différent
     echo $shape->area() . PHP_EOL;
