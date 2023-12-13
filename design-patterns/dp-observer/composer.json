@@ -1,0 +1,15 @@
+{
+    "name": "paul/demo-patern-observer",
+    "autoload": {
+        "psr-4": {
+            "Paul\\DP\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "p. schuhmacher",
+            "email": "contact@pschuhmacher.com"
+        }
+    ],
+    "require": {}
+}
