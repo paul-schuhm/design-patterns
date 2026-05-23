@@ -2,21 +2,13 @@
 
 - [Design patterns](#design-patterns)
   - [Rappels Programmation Orientée Objet](#rappels-programmation-orientée-objet)
-  - [Design Patterns](#design-patterns-1)
   - [Références](#références)
 
-Supports de cours sur les Design Patterns en programmation orientée objet.
+Supports de cours sur les *Design Patterns* et la programmation orientée objet, en PHP 8+.
 
 ## Rappels Programmation Orientée Objet
 
-- [Accéder aux démos (live)](./rappels-poo/demo-live/)
-- [Accéder aux corrections d'exercices](./rappels-poo/exercices/)
-
-## Design Patterns
-
-- [Accéder aux démos (live)](./design-patterns/demo-live/) (mare au canards, etc.)
-- [Accéder aux corrections d'exercices](./design-patterns/exercices/)
-- [Design Pattern Observer](./design-patterns/dp-observer/)
+- [Accéder aux démos (live)](./rappels-poo/)
 
 ## Références
 
