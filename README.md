@@ -12,7 +12,7 @@ Supports de cours sur les *Design Patterns* et la programmation orientée objet,
 
 ## Références
 
-<img src="./assets/cover.jpg width="300">
+<img src="./assets/cover.jpg" width="300">
 
 - [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.oreilly.com/library/view/design-patterns-elements/0201633612/), de Erich Gamma, Richard Helm, Ralph Johnson et John Vlissides, aka "the Gang of Four (GoF)", publié chez Addison-Wesley, 1994. La source. Trouvable facilement en PDF sur le web
 - [Head First Design Patterns](https://www.oreilly.com/library/view/head-first-design/0596007124/), par Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra, publié chez O'Reilly, 2004. Très bonne introduction aux design patterns par la pratique. Les auteur·es ont souhaité rendre ça "fun" et ludique, il faut donc apprécier (ou supporter, c'est selon) le ton un peu décalé délibérément choisi. [A été traduit en français et publié chez Eyrolles](https://www.eyrolles.com/Informatique/Livre/design-patterns-tete-la-premiere-9782841773503/).
