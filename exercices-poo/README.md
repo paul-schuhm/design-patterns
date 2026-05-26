@@ -1,45 +1,85 @@
 # Partie 1/4 Problèmes à résoudre en Programmation Orientée Objet
 
-## Problème 1  : Héritage simple
+## Problème 1 : Héritage simple
 
-> Notions abordées: classe, objet, attribut(propriété), méthode, constructeur, héritage, `parent::`, `static`
+> Notions abordées: classe, objet, attribut(propriété), méthode,
+> constructeur, héritage, `parent::`, `static`
 
-1. **Créer** une classe `City` représentant une ville avec les attributs `name` et `county` (département). On la placera dans son fichier `City.php`. **Utiliser** un *code client* (un script PHP, `index.php` par exemple) pour créer des instances avec différentes valeurs d'attribut et utiliser leur méthode d'affichage (`__toString()`) pour les imprimer sur la sortie standard sous la forme `"La ville X est dans le département Y"`.
-2. **Créer** une classe nommée `CityWithArea` (*area* désigne la région) qui étend la classe `City` affichant `"La ville X est dans le département Y de la région Z"`.
-3. **Modifier** la classe `City` pour que l'on puisse **connaître la ville ayant le nom le plus long**.
+1.  **Créer** une classe `City` représentant une ville avec les
+    attributs `name` et `county` (département). On la placera dans son
+    fichier `City.php`. **Utiliser** un *code client* (un script PHP,
+    `index.php` par exemple) pour créer des instances avec différentes
+    valeurs d'attribut et utiliser [leur méthode d'affichage
+    `__toString()`](https://www.php.net/manual/en/stringable.tostring.php)
+    pour les imprimer sur la sortie standard sous la forme
+    `"La ville X est dans le département Y"`.
+2.  **Créer** une classe nommée `CityWithArea` (*area* désigne la
+    région) qui étend la classe `City` affichant
+    `"La ville X est dans le département Y de la région Z"`.
+3.  **Modifier** la classe `City` pour que l'on puisse **connaître la
+    ville ayant le nom le plus long**.
 
-<!--
-L'instruction require_once 'City.class.php'; permet d'inclure le fichier contenant la définition de la classe Ville et donc de définir cette classe. Cela est nécessaire puisque la nouvelle classe VilleAvecRegion en hérite. La méthode __toString() substitue celle qui existait dans la classe Ville. Cette méthode fait appel à la méthode de la classe parent en utilisant l'instruction parent::__toString().
- 
- Un attribut de classe a été ajouté grâce à l'instruction protected static $nomLePlusLong;. Cet attribut a été déclaré avec la visibilité protected afin que si une classe en hérite que cet attribut soit accessible de celle-ci. Ceci est illustré avec la classe VilleCtrAvecRegion.
-La méthode de classe permet quant à elle de consulter la valeur contenue dans cet attribut de classe.
--->
+On décide d'enrichir notre programme car le modèle de *région* doit être
+plus complexe (car le monde est complexe !).
+
+> Nous allons faire de la composition (*aggregation*) d'objets !
+
+4.  **Créer** une classe `Area` (région) dans `Area.php` avec les
+    attributs `name` et `code`. Tous ses attributs **doivent être
+    privés**.
+5.  **Créer** une classe `County` (département) dans `County.php` avec
+    les attributs `name`, `code`, et `area` (qui sera une instance de la
+    classe `Area`). Tous ses attributs **doivent être privés**.
+6.  **Modifier** la classe `City` pour que son attribut `county` ne soit
+    plus une simple chaîne de caractères, mais une instance de la classe
+    `County`.
+7.  **Adapter** la méthode `__toString()` de `City` pour qu'elle navigue
+    à travers ses objets composants afin d'afficher :
+    `"La ville X est dans le département Y (Code) de la région Z"`.
+    Comment faire si les attributs sont privés ?
+8.  **Utiliser** [la syntaxe moderne de
+    PHP](https://www.php.net/manual/fr/language.oop5.decon.php#language.oop5.decon.constructor.promotion)
+    pour déclarer et initialiser tes attributs directement dans les
+    arguments du constructeur (*Promotion du constructeur*), ce qui rend
+    le code plus simple à lire et modifier.
 
 ## Problème 2 : les précautions à prendre avec l'héritage
 
->Ce problème est un *classique* de la POO, on verra pourquoi.
+> Ce problème est un *classique* de la POO, on verra pourquoi.
 
-On développe le moteur d'un logiciel de dessin vectoriel (type Figma ou Illustrator). L'utilisateur peut sélectionner des formes et modifier leurs dimensions à la souris via un panneau de propriétés.
+On développe le moteur d'un logiciel de dessin vectoriel (type Figma ou
+Illustrator). L'utilisateur peut sélectionner des formes et modifier
+leurs dimensions à la souris via un panneau de propriétés.
 
-1. **Créez** une classe `Rectangle` disposant de :
+1.  **Créez** une classe `Rectangle` disposant de :
 
-- Deux propriétés : `width` (largeur) et `height` (hauteur) en pixels
-- Une méthode `setWidth`(int $width) et `setHeight`(int $height) permettant de redimensionner la forme de manière dynamique
-- Une méthode `area()` qui retourne l'aire du rectangle, en pixels^2
+-   Deux propriétés : `width` (largeur) et `height` (hauteur) en pixels
+-   Une méthode `setWidth`(int \$width) et `setHeight`(int \$height)
+    permettant de redimensionner la forme de manière dynamique
+-   Une méthode `area()` qui retourne l'aire du rectangle, en pixels\^2
 
->L'utilisateur de la classe doit pouvoir créer des objets avec les dimensions qu'il désire.
-On souhaite à présent créer une classe `Square` qui étend `Rectangle` (un carré est juste un cas particulier de rectangle !).
+> L'utilisateur de la classe doit pouvoir créer des objets avec les
+> dimensions qu'il désire. On souhaite à présent créer une classe
+> `Square` qui étend `Rectangle` (un carré est juste un cas particulier
+> de rectangle !).
 
-2. **Implémentez** la classe `Square` : elle étend `Rectangle` et surcharge (*override*) `setWidth` et `setHeight` pour s'assurer que si l'on modifie la largeur, la hauteur prend la même valeur (et vice-versa), afin de préserver la *nature* du carré. Remarquez-vous un problème ?
-3. **Créez** une fonction globale `stretchHorizontal` dans le logiciel qui permet d'étirer horizontalement n'importe quel rectangle sélectionné pour lui donner une largeur spécifique, *sans toucher à sa hauteur*. Voici sa signature
+2.  **Implémentez** la classe `Square` : elle étend `Rectangle` et
+    surcharge (*override*) `setWidth` et `setHeight` pour s'assurer que
+    si l'on modifie la largeur, la hauteur prend la même valeur (et
+    vice-versa), afin de préserver la *nature* du carré. Remarquez-vous
+    un problème ?
+3.  **Créez** une fonction globale `stretchHorizontal` dans le logiciel
+    qui permet d'étirer horizontalement n'importe quel rectangle
+    sélectionné pour lui donner une largeur spécifique, *sans toucher à
+    sa hauteur*. Voici sa signature
 
-~~~php
+``` php
 function stretchHorizontal(Rectangle $r, int $newWidth): void
-~~~
+```
 
-4. Voici un extrait de code manipulant ces abstractions :
+4.  Voici un extrait de code manipulant ces abstractions :
 
-~~~php
+``` php
 // 1. Test avec un vrai Rectangle de 4x5
 $rect = new Rectangle(4, 5);
 stretchHorizontal($rect, 10);
@@ -49,51 +89,67 @@ echo "Aire du rectangle attendue : 50 (10 * 5) | Obtenue : " . $rect->area() . "
 $square = new Square(4); // largeur = 4, hauteur = 4
 stretchHorizontal($square, 10);
 echo "Aire du carré attendue : 40 (10 * 4) | Obtenue : " . $square->area() . "\n";
-~~~
+```
 
 **Qu'observez-vous ?**
 
-<!-- 
-La fonction stretchHorizontal est incapable de traiter un Square de la même manière qu'un Rectangle. L'héritage est rompu : un Carré N'EST PAS un Rectangle au sens du comportement (plus proche d'un cercle)
+> En mathématiques, un carré *est* un rectangle. Mais en programmation
+> orientée objet, la relation "Est un" (Is-A) ne valide pas
+> *automatiquement* l'héritage. L'héritage exige que **l'enfant respecte
+> le comportement du parent dans tous les scénarios possibles** (c'est
+> le [Principe de Substitution de Liskov, lire l'excellente section
+> "Exemple de violation du
+> LSP"](https://fr.wikipedia.org/wiki/Principe_de_substitution_de_Liskov)).
+> Si le comportement diverge (comme ici lors d'une modification de
+> dimension), il faut **abandonner l'héritage et passer par une
+> Interface**.
 
-- Plus de mensonge en mémoire : 
-
-- Square n'embarque plus inutilement deux variables width et height héritées dont il doit forcer l'égalité. Il n'a qu'un side.
-- Pas la même interface (comportement) : plus de setWitdh et setHeight mensongers, setSize()
-
-- Inversion de dépendance respectée : Les fonctions du logiciel de dessin dépendent de ShapeInterface. Elles n'ont pas à savoir comment les formes calculent leur aire ou gèrent leurs dimensions internes.
-
- -->
-
-> En mathématiques, un carré *est* un rectangle. Mais en programmation orientée objet, la relation "Est un" (Is-A) ne valide pas *automatiquement* l'héritage. L'héritage exige que **l'enfant respecte le comportement du parent dans tous les scénarios possibles** (c'est le [Principe de Substitution de Liskov, lire l'excellente section "Exemple de violation du LSP"](https://fr.wikipedia.org/wiki/Principe_de_substitution_de_Liskov)). Si le comportement diverge (comme ici lors d'une modification de dimension), il faut **abandonner l'héritage et passer par une Interface**.
-
-5. En POO, hériter pour *gagner du code* est souvent une *fausse bonne idée*. Un carré n'a pas besoin de posséder une largeur **et** une hauteur en mémoire.
-**Réimplémentez** ce système de manière à ce que `Rectangle` et `Square` soient *deux* entités totalement indépendantes, tout en permettant au logiciel de les manipuler ensemble dans une même collection grâce à *un contrat commun*. Pour cela, **utilisez** une **interface** commune pour maintenir le *polymorphisme* et assurez-vous de rendre vos objets **immuables** (suppression des setters qui modifient l'état interne de l'objet !)
+5.  En POO, hériter pour *gagner du code* est souvent une *fausse bonne
+    idée*. Un carré n'a pas besoin de posséder une largeur **et** une
+    hauteur en mémoire. **Réimplémentez** ce système de manière à ce que
+    `Rectangle` et `Square` soient *deux* entités totalement
+    indépendantes, tout en permettant au logiciel de les manipuler
+    ensemble dans une même collection grâce à *un contrat commun*. Pour
+    cela, **utilisez** une **interface** commune pour maintenir le
+    *polymorphisme* et assurez-vous de rendre vos objets **immuables**
+    (suppression des setters qui modifient l'état interne de l'objet !)
 
 ## Problème 3 : Interfaces et implémentations de structures de données abstraites Queue et Stack
 
-1. Dans un fichier `ds.php`, **créer** deux classes :
+1.  Dans un fichier `ds.php`, **créer** deux classes :
 
-- `Queue` qui implémente `QueueInterface` [(comportement *FIFO* : First In, First Out)](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)).
-- `Stack` qui implémente `StackInterface` [(comportement *LIFO* : Last In, First Out)](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)).
+-   `Queue` qui implémente `QueueInterface` [(comportement *FIFO* :
+    First In, First
+    Out)](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)).
+-   `Stack` qui implémente `StackInterface` [(comportement *LIFO* : Last
+    In, First
+    Out)](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)).
 
-2. **Créez** un fichier `interfaces.php` contenant les deux contrats (`interfaces`) que les classes devront respecter. Voici les interfaces de ces structures de données :
+2.  **Créez** un fichier `interfaces.php` contenant les deux contrats
+    (`interfaces`) que les classes devront respecter. Voici les
+    interfaces de ces structures de données :
 
-- **Queue** :
-  - enqueue() : ajoute un élément de la queue
-  - dequeue() : retire un élément de la queue. Lève une exception de type [UnderflowException](https://www.php.net/manual/en/class.underflowexception.php) si la file est vide.
-  - size() : donne le nombre d'éléments restants dans la queue
-- **Stack** :
-  - push() : ajoute un élément à la stack
-  - pop() : retire un élément de la stack
-  - isEmpty() : renvoie vrai si la stack est vide, faux sinon
-  - size() : donne le nombre d'éléments dans la queue
+-   **Queue** :
+    -   enqueue() : ajoute un élément de la queue
+    -   dequeue() : retire un élément de la queue. Lève une exception de
+        type
+        [UnderflowException](https://www.php.net/manual/en/class.underflowexception.php)
+        si la file est vide.
+    -   size() : donne le nombre d'éléments restants dans la queue
+-   **Stack** :
+    -   push() : ajoute un élément à la stack
+    -   pop() : retire un élément de la stack
+    -   isEmpty() : renvoie vrai si la stack est vide, faux sinon
+    -   size() : donne le nombre d'éléments dans la queue
 
-**Complétez** les signatures de ces méthodes avec le *type hinting*, puis faites **implémenter** ces interfaces par vos classes `Queue` et `Stack`.
+**Complétez** les signatures de ces méthodes avec le *type hinting*,
+puis faites **implémenter** ces interfaces par vos classes `Queue` et
+`Stack`.
 
-3. Une fois les classes écrites, **testez vos implémentations** (Queue/Stack) et la gestion des erreurs avec le script ci-dessous :
+3.  Une fois les classes écrites, **testez vos implémentations**
+    (Queue/Stack) et la gestion des erreurs avec le script ci-dessous :
 
-~~~php
+``` php
 <?php
 //Fichier de test.
 //Inclure ici les interfaces et les classes (vos fichiers ds.php et interfaces.php)
@@ -139,26 +195,38 @@ try {
 } catch (Exception $e) {
     echo "Erreur : Mauvais type d'exception levé.\n";
 }
-~~~
+```
 
-4. PHP fournit des structures de données abstraites usuelles comme la [SplStack](https://www.php.net/manual/fr/class.splstack.php) et la [SplQueue](https://www.php.net/manual/fr/class.splqueue.php), via [le module SPL (Standard PHP Library)](https://www.php.net/manual/fr/book.spl.php), crée en 2009 (PHP 5.3). Ces structures de données sont fournies sous forme de classes :
-   1. **Inspecter** l'interface du type [SplStack](https://www.php.net/manual/fr/class.splstack.php). Est-elle *cohérente* ? Pourquoi ? De même avec l'interface de [SplQueue](https://www.php.net/manual/fr/class.splqueue.php) ?
-   2. [Un nouveau module de Data Structures (Ds)](https://www.php.net/manual/fr/book.ds.php) a été développé en 2016 (par Rudi Theunissen). **Pourquoi est-il préférable d'utiliser les structures de données de ce module** (*Ds*) plutôt que celles fournies par la *Spl* ?
-
-<!-- 
-class SplStack extends SplDoublyLinkedList ! On peut faire des shift/unshift ! API incohérente !
- -->
+4.  PHP fournit des structures de données abstraites usuelles comme la
+    [SplStack](https://www.php.net/manual/fr/class.splstack.php) et la
+    [SplQueue](https://www.php.net/manual/fr/class.splqueue.php), via
+    [le module SPL (Standard PHP
+    Library)](https://www.php.net/manual/fr/book.spl.php), crée en 2009
+    (PHP 5.3). Ces structures de données sont fournies sous forme de
+    classes :
+    1.  **Inspecter** l'interface du type
+        [SplStack](https://www.php.net/manual/fr/class.splstack.php).
+        Est-elle *cohérente* ? Pourquoi ? De même avec l'interface de
+        [SplQueue](https://www.php.net/manual/fr/class.splqueue.php) ?
+    2.  [Un nouveau module de Data Structures
+        (Ds)](https://www.php.net/manual/fr/book.ds.php) a été développé
+        en 2016 (par Rudi Theunissen). **Pourquoi est-il préférable
+        d'utiliser les structures de données de ce module** (*Ds*)
+        plutôt que celles fournies par la *Spl* ?
 
 ### Liens utiles
 
-- [Le module Data Structures Ds de PHP](https://www.php.net/manual/fr/book.ds.php)
-- [Les structures de données en PHP - Frédéric BOUCHERY - AFUP Day 2020 Nantes](https://www.youtube.com/watch?v=tX1jbqnjrR0&list=PLS3XEhTy6-Ale8Et6pxRR2I3LYNt8-rX3&index=84)
+-   [Le module Data Structures Ds de
+    PHP](https://www.php.net/manual/fr/book.ds.php)
+-   [Les structures de données en PHP - Frédéric BOUCHERY - AFUP Day
+    2020
+    Nantes](https://www.youtube.com/watch?v=tX1jbqnjrR0&list=PLS3XEhTy6-Ale8Et6pxRR2I3LYNt8-rX3&index=84)
 
 ## Problème : passage par copie et passage par référence
 
 Voici un extrait de code où des fonctions manipulent un objet :
 
-~~~php
+``` php
 <?php
 
 class Foo{
@@ -185,13 +253,14 @@ updateObject2($obj);
 echo $obj->a . PHP_EOL;
 updateObject2($obj);
 echo $obj->a . PHP_EOL;
-~~~
+```
 
 Quelle sortie va produire ce programme ? **Pourquoi** ?
 
-**Même question** pour ce code où des fonctions manipulent un tableau (`Array`) :
+**Même question** pour ce code où des fonctions manipulent un tableau
+(`Array`) :
 
-~~~php
+``` php
 <?php
 
 function updateArray1(array $arr){
@@ -208,15 +277,18 @@ updateArray1($arr);
 var_dump($arr);
 updateArray2($arr);
 var_dump($arr);
-~~~
+```
 
 ## Problème : Passage par copie, passage par référence et clonage
 
-On gère un système de paniers d'achat (`Cart`) qui contiennent des articles (`Product`). On souhaite appliquer une réduction temporaire sur un produit pour un utilisateur spécifique, sans impacter le prix catalogue du produit pour les autres utilisateurs.
+On gère un système de paniers d'achat (`Cart`) qui contiennent des
+articles (`Product`). On souhaite appliquer une réduction temporaire sur
+un produit pour un utilisateur spécifique, sans impacter le prix
+catalogue du produit pour les autres utilisateurs.
 
 Voici le code de départ :
 
-~~~php
+``` php
 <?php
 
 class Product {
@@ -237,30 +309,57 @@ class Cart {
         //Affiche le contenu du panier, à implémenter !
     }
 }
-~~~
+```
 
-1. **Copiez/collez** le code dans un fichier `index.php`.
-2. **Écrivez** un script qui déroule le scénario suivant :
-   1. **Créez** un produit catalogue : Un MacBook Pro à 2000 EUROS. Gardez le en mémoire dans la variable `$productMacBook`.
-   2. **Créez** le panier de *John*. **Ajoutez**-y ce MacBook Pro.
-   3. **Créez** le panier de *Jane*. Jane dispose d'un code promo secret qui lui donne droit à 50% de réduction sur le MacBook Pro. Pour le panier de *Jane*, **affectez le MacBook Pro à une nouvelle variable** : `$productMacBookJane = $productMacBook`. **Modifiez** son prix à `1000` EUROS, puis **ajoutez** `$productMacBookJane` au panier de *Jane*.
-   4. **Affichez** le contenu du panier de *John* et le contenu du panier de *Jane* (avec la méthode `showContent()`).
-   5. **Qu'observez-vous** ? Quel est le prix du MacBook dans le panier de *John* ? Pourquoi ?
-   6. En PHP, les variables contenant des objets sont-elles passées *par valeur* (copie) ou *par référence* (pointeur) ?
-3. **Modifiez** votre script [en utilisant le mécanisme de clonage de PHP (`clone`)](https://www.php.net/manual/fr/language.oop5.cloning.php) pour que *Jane* bénéficie de ses 1000 EUROS de réduction sans impacter le panier de *John* (qui doit rester à 2000 EUROS).
-4. Sur le clonage : quelle est la **différence** entre la **copie en profondeur** (*deep copy*) ou la **copie en surface** (*shallow copy*) dans le processus de **clonage d'objets** ? Par exemple, si `Product` a une référence vers une `Category`, est ce que le produit cloné partagera la même instance de catégorie que le produit initial ? Comment doit-on s'y prendre si l'on veut que `Product` dispose de sa propre instance de `Category` ?
-
-<!-- ## Problème : Sérialisation et désarialisation d'objets -->
+1.  **Copiez/collez** le code dans un fichier `index.php`.
+2.  **Écrivez** un script qui déroule le scénario suivant :
+    1.  **Créez** un produit catalogue : Un MacBook Pro à 2000 EUROS.
+        Gardez le en mémoire dans la variable `$productMacBook`.
+    2.  **Créez** le panier de *John*. **Ajoutez**-y ce MacBook Pro.
+    3.  **Créez** le panier de *Jane*. Jane dispose d'un code promo
+        secret qui lui donne droit à 50% de réduction sur le MacBook
+        Pro. Pour le panier de *Jane*, **affectez le MacBook Pro à une
+        nouvelle variable** : `$productMacBookJane = $productMacBook`.
+        **Modifiez** son prix à `1000` EUROS, puis **ajoutez**
+        `$productMacBookJane` au panier de *Jane*.
+    4.  **Affichez** le contenu du panier de *John* et le contenu du
+        panier de *Jane* (avec la méthode `showContent()`).
+    5.  **Qu'observez-vous** ? Quel est le prix du MacBook dans le
+        panier de *John* ? Pourquoi ?
+    6.  En PHP, les variables contenant des objets sont-elles passées
+        *par valeur* (copie) ou *par référence* (pointeur) ?
+3.  **Modifiez** votre script [en utilisant le mécanisme de clonage de
+    PHP
+    (`clone`)](https://www.php.net/manual/fr/language.oop5.cloning.php)
+    pour que *Jane* bénéficie de ses 1000 EUROS de réduction sans
+    impacter le panier de *John* (qui doit rester à 2000 EUROS).
+4.  Sur le clonage : quelle est la **différence** entre la **copie en
+    profondeur** (*deep copy*) ou la **copie en surface** (*shallow
+    copy*) dans le processus de **clonage d'objets** ? Par exemple, si
+    `Product` a une référence vers une `Category`, est ce que le produit
+    cloné partagera la même instance de catégorie que le produit initial
+    ? Comment doit-on s'y prendre si l'on veut que `Product` dispose de
+    sa propre instance de `Category` ?
 
 ## Problème : L'API Reflection et les attributs PHP
 
-[L'API Reflection](https://www.php.net/manual/en/book.reflection.php) est le pilier de la **méta-programmation** en PHP. C'est grâce à cette API que les frameworks/tooling lisent les attributs/annotations (comme `#[Route('/path')`]) pour lier une URL à une méthode de votre code sans que vous n'ayez besoin de configurer manuellement un routeur centralisé.
+[L'API Reflection](https://www.php.net/manual/en/book.reflection.php)
+est le pilier de la **méta-programmation** en PHP. C'est grâce à cette
+API que les frameworks/tooling lisent les attributs/annotations (comme
+`#[Route('/path')`\]) pour lier une URL à une méthode de votre code sans
+que vous n'ayez besoin de configurer manuellement un routeur centralisé.
 
-> métaprogrammation : technique de programmation informatique permettant à un programme de **traiter d'autres programmes, ou lui-même, comme leurs données (inputs)**. Un programme peut ainsi se modifier lui-même, parfois pendant qu'il est en train de s'exécuter. Certains langages, comme la famille de Lisp, font de la métaprogrammation *par design* (le code est une donnée comme une autre)
+> métaprogrammation : technique de programmation informatique permettant
+> à un programme de **traiter d'autres programmes, ou lui-même, comme
+> leurs données (inputs)**. Un programme peut ainsi se modifier
+> lui-même, parfois pendant qu'il est en train de s'exécuter. Certains
+> langages, comme la famille de Lisp, font de la métaprogrammation *par
+> design* (le code est une donnée comme une autre)
 
-Voici un code métier "inconnu" que votre script va devoir inspecter et manipuler *dynamiquement*.
+Voici un code métier "inconnu" que votre script va devoir inspecter et
+manipuler *dynamiquement*.
 
-~~~php
+``` php
 <?php
 // Une classe d'exemple représentant un contrôleur dans une application
 class UserController 
@@ -296,17 +395,28 @@ class UserController
         // Log interne...
     }
 }
-~~~
+```
 
-1. **Créer** une classe `ControllerInspector` dans le fichier `ControllerInspector.php` qui prendra le nom d'une classe en paramètre et proposera les fonctionnalités suivantes grâce à l'API *Reflection* :
+1.  **Créer** une classe `ControllerInspector` dans le fichier
+    `ControllerInspector.php` qui prendra le nom d'une classe en
+    paramètre et proposera les fonctionnalités suivantes grâce à l'API
+    *Reflection* :
 
-- `getActions(): array` : inspecte la classe et retourne *uniquement* le nom des méthodes publiques qui se terminent par le suffixe `Action` (ex: `indexAction`, `showAction`).
-- `getMethodParameters(string $methodName): array` : retourne la liste des paramètres d'une méthode donnée **avec leur type** (sous forme de chaîne de caractères) et indique s'ils ont une valeur par défaut.
-- `executeAction(string $actionName, array $params): mixed` : instancie dynamiquement la classe (en passant la valeur `'admin'` au constructeur), puis exécute l'action demandée avec les paramètres fournis.
+-   `getActions(): array` : inspecte la classe et retourne *uniquement*
+    le nom des méthodes publiques qui se terminent par le suffixe
+    `Action` (ex: `indexAction`, `showAction`).
+-   `getMethodParameters(string $methodName): array` : retourne la liste
+    des paramètres d'une méthode donnée **avec leur type** (sous forme
+    de chaîne de caractères) et indique s'ils ont une valeur par défaut.
+-   `executeAction(string $actionName, array $params): mixed` :
+    instancie dynamiquement la classe (en passant la valeur `'admin'` au
+    constructeur), puis exécute l'action demandée avec les paramètres
+    fournis.
 
-2. **Tester** votre code (classe `ControllerInspector`) avec le script ci-dessous :
+2.  **Tester** votre code (classe `ControllerInspector`) avec le script
+    ci-dessous :
 
-~~~php
+``` php
 <?php
 // Importer votre script
 // Instanciation de votre inspecteur
@@ -330,21 +440,33 @@ echo "Exécution dynamique de showUserAction : " . PHP_EOL;
 // Doit instancier UserController avec 'admin' et appeler showUserAction(42)
 $result = $inspector->executeAction('showUserAction', ['id' => 42]);
 // Attendu : "Affichage de l'utilisateur numéro : 42"
-~~~
+```
 
-3. Nous voulons ajouter une fonctionnalité qui va inspecter [les Attributs PHP](https://www.php.net/manual/fr/language.attributes.overview.php) (les métadonnées natives du langage, **depuis PHP 8**). Les attributs PHP **fournissent des métadonnées structurées et lisibles par machine** pour les classes, méthodes, fonctions, paramètres, propriétés et constantes. **Ils peuvent être inspectés à l'exécution via l'API de réflexion**, **permettant un comportement dynamique sans modifier le code**. Les attributs offrent un moyen déclaratif d'annoter le code avec des métadonnées.
+3.  Nous voulons ajouter une fonctionnalité qui va inspecter [les
+    Attributs
+    PHP](https://www.php.net/manual/fr/language.attributes.overview.php)
+    (les métadonnées natives du langage, **depuis PHP 8**). Les
+    attributs PHP **fournissent des métadonnées structurées et lisibles
+    par machine** pour les classes, méthodes, fonctions, paramètres,
+    propriétés et constantes. **Ils peuvent être inspectés à l'exécution
+    via l'API de réflexion**, **permettant un comportement dynamique
+    sans modifier le code**. Les attributs offrent un moyen déclaratif
+    d'annoter le code avec des métadonnées.
 
 **Ajoutez** la méthode suivante à votre classe `ControllerInspector` :
 
-~~~php
+``` php
 getRouteMapping(): array
-~~~
+```
 
-Cette méthode inspecte toutes les méthodes de la classe. **Si une méthode possède l'attribut `#[Route]`**, l'inspecteur doit extraire le chemin (*path*) défini dans l'attribut et l'associer au nom de la méthode.
+Cette méthode inspecte toutes les méthodes de la classe. **Si une
+méthode possède l'attribut `#[Route]`**, l'inspecteur doit extraire le
+chemin (*path*) défini dans l'attribut et l'associer au nom de la
+méthode.
 
 Résultat attendu :
 
-~~~php
+``` php
 $routes = $inspector->getRouteMapping();
 print_r($routes);
 /* Attendu : 
@@ -352,18 +474,25 @@ print_r($routes);
     '/users' => 'indexAction',
     '/users/:id' => 'showUserAction'
 ]
-~~~
+```
 
-> C'est par exemple de cette manière que [Symfony détecte les routes](https://symfony.com/doc/current/routing.html) ou que Doctrine comprend la configuration de la base de données. Avant l'ajout des attributs PHP on utilisait [les DocBlocks](https://docs.phpdoc.org/guide/getting-started/what-is-a-docblock.html), une spécification externe au langage.
+> C'est par exemple de cette manière que [Symfony détecte les
+> routes](https://symfony.com/doc/current/routing.html) ou que Doctrine
+> comprend la configuration de la base de données. Avant l'ajout des
+> attributs PHP on utilisait [les
+> DocBlocks](https://docs.phpdoc.org/guide/getting-started/what-is-a-docblock.html),
+> une spécification externe au langage.
 
 ## Problème 5 : Mini-projet orienté objet
-
-<!-- Fourmilliere, jeu de la vie -->
 
 ## Exercices supplémentaires (et corrigés)
 
 Si vous avez fini, et souhaitez continuez à pratiquer :
 
-- Vous pourrez trouver des problèmes supplémentaires sur [codewars (challenges PHP en POO)](https://www.codewars.com/kata/search/php?q=&tags=Object-oriented%20Programming&beta=false&order_by=sort_date%20desc) (il vous faudra seulement vous créer un compte...)
-- Imaginez un mini-projet pour pratique les concepts de la POO et de design
-- Demandez-moi !
+-   Vous pourrez trouver des problèmes supplémentaires sur [codewars
+    (challenges PHP en
+    POO)](https://www.codewars.com/kata/search/php?q=&tags=Object-oriented%20Programming&beta=false&order_by=sort_date%20desc)
+    (il vous faudra seulement vous créer un compte...)
+-   Imaginez un mini-projet pour pratique les concepts de la POO et de
+    design
+-   Demandez-moi !
