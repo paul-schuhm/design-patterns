@@ -1,0 +1,30 @@
+{
+  "name": "ps/app",
+  "description": "Démonstration de l'autoloading avec PSR 4 et du tooling d'un projet PHP moderne.",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "Ps\\App\\": "src/"
+    },
+    "files": [
+      "src/config.php"
+    ]
+  },
+  "authors": [
+    {
+      "name": "paul schuhmacher",
+      "email": "contact@pschuhmacher.com"
+    }
+  ],
+  "require-dev": {
+    "symfony/var-dumper": "^7.3",
+    "phpstan/phpstan": "^2.1",
+    "phpunit/phpunit": "^10.5",
+    "squizlabs/php_codesniffer": "^4.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}

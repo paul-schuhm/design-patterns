@@ -1,1 +1,4 @@
 tmp
+**/vendor
+**/docs
+**/.phpdoc
