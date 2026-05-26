@@ -1,5 +1,27 @@
 # Partie 1/4 Problèmes à résoudre en Programmation Orientée Objet
 
+-   [Partie 1/4 Problèmes à résoudre en Programmation Orientée
+    Objet](#partie-14-problèmes-à-résoudre-en-programmation-orientée-objet)
+    -   [Problème 1 : Héritage simple](#problème-1---héritage-simple)
+    -   [Problème 2 : les précautions à prendre avec
+        l'héritage](#problème-2--les-précautions-à-prendre-avec-lhéritage)
+    -   [Problème 3 : Interfaces, polymorphisme et injection de
+        dépendances](#problème-3--interfaces-polymorphisme-et-injection-de-dépendances)
+    -   [Problème 4 : Interfaces et implémentations de structures de
+        données abstraites *Queue* et
+        *Stack*](#problème-4--interfaces-et-implémentations-de-structures-de-données-abstraites-queue-et-stack)
+        -   [Liens utiles](#liens-utiles)
+    -   [Problème 5 : passage par copie et passage par
+        référence](#problème-5--passage-par-copie-et-passage-par-référence)
+    -   [Problème 6 : Passage par copie, passage par référence et
+        clonage](#problème-6--passage-par-copie-passage-par-référence-et-clonage)
+    -   [Problème 7 : L'API Reflection et les attributs
+        PHP](#problème-7--lapi-reflection-et-les-attributs-php)
+    -   [Problème 7 : Mini-projet orienté
+        objet](#problème-7--mini-projet-orienté-objet)
+    -   [Exercices supplémentaires (et
+        corrigés)](#exercices-supplémentaires-et-corrigés)
+
 ## Problème 1 : Héritage simple
 
 > Notions abordées: classe, objet, attribut(propriété), méthode,
@@ -109,12 +131,135 @@ echo "Aire du carré attendue : 40 (10 * 4) | Obtenue : " . $square->area() . "\
     hauteur en mémoire. **Réimplémentez** ce système de manière à ce que
     `Rectangle` et `Square` soient *deux* entités totalement
     indépendantes, tout en permettant au logiciel de les manipuler
-    ensemble dans une même collection grâce à *un contrat commun*. Pour
-    cela, **utilisez** une **interface** commune pour maintenir le
-    *polymorphisme* et assurez-vous de rendre vos objets **immuables**
-    (suppression des setters qui modifient l'état interne de l'objet !)
+    ensemble dans une même collection grâce à *un contrat commun* :
+    1.  Définissez une **interface** (nommée par exemple `Shape`) qui
+        servira de dénominateur commun. Cette interface **définit** les
+        méthodes :
+        -   `area(): float` : calcule et retourne l'aire de la forme
+        -   `perimeter(): float` : calcule et retourne le périmètre de
+            la forme
+        -   `stretchHorizontal(double factor): Shape` : retourne une
+            nouvelle instance Rectangle avec les nouvelles dimensions
+            (étirement horizontal)
+        -   `stretchVertical(double factor): Shape` : retourne une
+            nouvelle instance Rectangle avec les nouvelles dimensions
+            (étirement horizontal)
+        -   `rescale(double factor) : Shape` : retourne une nouvelle
+            instance de Rectangle ou de Square, avec les dimensions mise
+            à l'échelle
+    2.  **Revisitez** vos classes `Rectangle` et `Square` de manière à
+        ce qu'elles implémentent toutes les deux l'interface `Shape`,
+        créée précédemment
+    3.  *Code client* : **créez** une collection (un tableau) de
+        rectangles et de carrés. Pour chaque élément de la collection :
+        1.  **Affichez** leur surface
+        2.  **Procédez** à un étirement horizontal d'un facteur `4.2`
+6.  Si l'on veut ajouter une nouvelle forme (par exemple un triangle),
+    **que faudra-t-il faire** ? **Est-ce que le code client doit être
+    modifié** (le code qui manipule et consomme les formes géométriques)
+    ?
+7.  Si l'on veut ajouter à présent une forme de *cercle*, est-ce que
+    notre interface `Shape` est adaptée ?
+8.  *Immutabilité* : quel est l'intérêt de ne pas *muter* les objets (de
+    *mettre à jour* leurs états) mais de retourner une nouvelle instance
+    à la place lorsqu'on les modifie ?
 
-## Problème 3 : Interfaces et implémentations de structures de données abstraites Queue et Stack
+## Problème 3 : Interfaces, polymorphisme et injection de dépendances
+
+Vous travaillez sur le module d'achat d'un site e-commerce. Lorsqu'un
+client valide son panier, la classe `OrderProcessor` doit enregistrer la
+commande, puis avertir l'utilisateur que son achat est confirmé.
+
+Au départ, l'application envoyait uniquement des *e-mails*. Mais le
+marketing veut maintenant pouvoir envoyer des *SMS* pour les commandes
+urgentes, ou des *notifications* *Push* pour les utilisateur·ices de
+l'application mobile.
+
+Vous devez concevoir ce système pour que `OrderProcessor` puisse envoyer
+ces différents types de notifications, sans que l'on ait à modifier une
+seule ligne de sa classe. Peut-être que demain un nouveau type de
+notification sera demandé.
+
+1.  **Créez** l'interface `NotifierInterface`. Elle doit définir la
+    méthode requise pour envoyer un message :
+
+``` php
+public function send(User $user, string $message): bool;
+```
+
+2.  **Créez** trois classes qui implémentent `NotifierInterface`. Pour
+    l'exercice, elles se contenteront d'un `echo` sur la sortie standard
+    pour simuler l'envoi :
+    -   `EmailNotifier` : Affiche " \[Email\] Envoyé à \[email de
+        l'user\] : \[message\] "
+    -   `SmsNotifier` : Affiche " \[SMS\] Envoyé au \[téléphone de
+        l'user\] : \[message\] "
+    -   `PushNotifier` : Affiche " \[Push Notification\] Notification
+        interne : \[message\]"
+
+Il faut à présent fournir une implémentation à `OrderProcessor` pour
+envoyer la notification. Pour cela, nous allons réaliser *une injection
+de dépendance* (*Dependency injection* ou DI) *via* le constructeur
+
+3.  **Créez** la classe `OrderProcessor`. Elle doit :
+    1.  **Recevoir une instance** d'un objet de type `NotifierInterface`
+        *via* son constructeur (*Injection de dépendance*).**Elle ne
+        doit jamais instancier un formateur elle-même** (pas de
+        `new EmailNotifier()` à l'*intérieur* du constructeur.) Pourquoi
+        ?
+    2.  **Posséder** une méthode
+        `completeOrder(User $user, float $amount): void`. Cette méthode
+        *simule* la validation de la commande, puis **utilise le
+        notifier** injecté pour envoyer le message suivant :
+        `"Merci pour votre commande de [amount] EUROS !"`. Voici un
+        *template* de code pour vous guider :
+
+``` php
+class OrderProcessor {
+    // À FAIRE : Injecter le NotifierInterface par le constructeur
+    
+    public function completeOrder(User $user, float $amount): void {
+        echo "- Traitement de la commande de {$user->name} ({$amount} euros)" . PHP_EOL;
+        // Simule l'enregistrement en Base de données...
+        echo "- Commande enregistrée avec succès" . PHP_EOL;
+        // TODO: Déclencher la notification via la dépendance injectée
+    }
+}
+```
+
+Voici une classe `User` utilisable pour votre programme :
+
+``` php
+// Classe représentant un User ("Value object") : aucune méthode, une 'map' qui transporte de l'information
+class User {
+    public function __construct(
+        public readonly string $fullName,
+        public readonly string $email,
+        public readonly string $phoneNumber
+    ) {}
+}
+```
+
+4.  **Écrire** un code client pour utiliser votre système. Voici un
+    scénario :
+    1.  Créer un User (récupérer en base de données)
+    2.  Préparer une notification par email
+    3.  Creer une instance de OrderProcessor
+    4.  Exécuter completeOrder() pour l'user crée
+
+``` php
+$client = new User("Jane Doe", "jdoe@email.com", "0612345678");
+$processorEmail = new OrderProcessor(_________); // DI
+$processorEmail->completeOrder(_________);
+```
+
+5.  Si demain on veut ajouter un `WhatsappNotifier`, quelles classes
+    existantes doit-on modifier ?
+6.  Pourquoi l'injection de dépendance facilite-t-elle l'écriture de
+    *tests* pour `OrderProcessor` ? (Indice : Pensez aux faux objets /
+    Mocks).
+
+## Problème 4 : Interfaces et implémentations de structures de données abstraites *Queue* et *Stack*
 
 1.  Dans un fichier `ds.php`, **créer** deux classes :
 
@@ -222,7 +367,7 @@ try {
     2020
     Nantes](https://www.youtube.com/watch?v=tX1jbqnjrR0&list=PLS3XEhTy6-Ale8Et6pxRR2I3LYNt8-rX3&index=84)
 
-## Problème : passage par copie et passage par référence
+## Problème 5 : passage par copie et passage par référence
 
 Voici un extrait de code où des fonctions manipulent un objet :
 
@@ -279,7 +424,7 @@ updateArray2($arr);
 var_dump($arr);
 ```
 
-## Problème : Passage par copie, passage par référence et clonage
+## Problème 6 : Passage par copie, passage par référence et clonage
 
 On gère un système de paniers d'achat (`Cart`) qui contiennent des
 articles (`Product`). On souhaite appliquer une réduction temporaire sur
@@ -341,7 +486,7 @@ class Cart {
     ? Comment doit-on s'y prendre si l'on veut que `Product` dispose de
     sa propre instance de `Category` ?
 
-## Problème : L'API Reflection et les attributs PHP
+## Problème 7 : L'API Reflection et les attributs PHP
 
 [L'API Reflection](https://www.php.net/manual/en/book.reflection.php)
 est le pilier de la **méta-programmation** en PHP. C'est grâce à cette
@@ -483,7 +628,7 @@ print_r($routes);
 > DocBlocks](https://docs.phpdoc.org/guide/getting-started/what-is-a-docblock.html),
 > une spécification externe au langage.
 
-## Problème 5 : Mini-projet orienté objet
+## Problème 7 : Mini-projet orienté objet
 
 ## Exercices supplémentaires (et corrigés)
 
