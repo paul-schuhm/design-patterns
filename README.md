@@ -13,6 +13,7 @@ Supports de cours sur les *Design Patterns* et la programmation orientée objet,
 ## Rappels Programmation Orientée Objet
 
 - [Accéder aux démos (live)](./rappels-poo/)
+- [Accéder aux exercices](./exercices-poo/)
 
 ## *Autoloading* avec Composer (PSR-4)
 
