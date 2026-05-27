@@ -66,7 +66,7 @@ leurs dimensions à la souris via un panneau de propriétés.
 1.  **Créez** une classe `Rectangle` disposant de :
 
 -   Deux propriétés : `width` (largeur) et `height` (hauteur) en pixels
--   Une méthode `setWidth(int \$width): void` et `setHeight(int \$height): void`
+-   Une méthode `setWidth(int $width): void` et `setHeight(int $height): void`
     permettant de redimensionner la forme de manière dynamique
 -   Une méthode `area(): int` qui retourne l'aire du rectangle, en $$pixels\^2$$
 
