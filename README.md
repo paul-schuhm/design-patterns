@@ -41,4 +41,6 @@ Supports de cours sur les *Design Patterns* et la programmation orientée objet,
 
 ### Sur le web
 
-- [Le catalogue des patrons de conception (de Refactoring guru)](https://refactoring.guru/fr/design-patterns/catalog), bon catalogue en ligne interactif avec des exemples de code
+- [Le catalogue des patrons de conception (de Refactoring guru)](https://refactoring.guru/fr/design-patterns/catalog), bon catalogue des *Design Patterns* du Gof en ligne, interactif avec des exemples de code
+- [The Portland Patterns Repository](http://c2.com/ppr/), maintenu par [Ward Cunningham](https://fr.wikipedia.org/wiki/Ward_Cunningham), inventeur des systèmes wiki, est un wiki dédié à tout ce qui est lié aux *patterns*
+- [Hillside Group](https://hillside.net/patterns), encourage les pratiques de programmation et de conception communes et centralise des ressources sur les patterns. Le site contient de nombreuses informations sur ces ressources, notamment les livres, les articles, outils, etc. [Voir par exemple le catalogue de patterns](https://hillside.net/patterns/patterns-catalog). (*Quelques liens cassés...*)
