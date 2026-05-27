@@ -2,7 +2,7 @@
 
 - [Design patterns](#design-patterns)
   - [Rappels Programmation Orientée Objet](#rappels-programmation-orientée-objet)
-  - [*Autoloading* avec Composer (PSR-4)](#autoloading-avec-composer-psr-4)
+  - [PHP Moderne (8+) et *autoloading* avec Composer (PSR-4)](#php-moderne-8-et-autoloading-avec-composer-psr-4)
   - [Références](#références)
     - [Ouvrages](#ouvrages)
     - [Conférences](#conférences)
@@ -15,9 +15,10 @@ Supports de cours sur les *Design Patterns* et la programmation orientée objet,
 - [Accéder aux démos (live)](./rappels-poo/)
 - [Accéder aux exercices](./exercices-poo/)
 
-## *Autoloading* avec Composer (PSR-4)
+## PHP Moderne (8+) et *autoloading* avec Composer (PSR-4)
 
 - [Accéder aux démos sur la migration d'un projet pour utiliser l'autoloading](./pratique/composer-autoloading/)
+- [Accéder aux exercices](./exercices-modern-php/)
 
 ## Références
 
