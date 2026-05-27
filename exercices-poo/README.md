@@ -1,16 +1,25 @@
 # Partie 1/4 Problèmes à résoudre en Programmation Orientée Objet
 
-- [Partie 1/4 Problèmes à résoudre en Programmation Orientée Objet](#partie-14-problèmes-à-résoudre-en-programmation-orientée-objet)
-  - [Problème 1 : Héritage simple](#problème-1--héritage-simple)
-  - [Problème 2 : les précautions à prendre avec l'héritage](#problème-2--les-précautions-à-prendre-avec-lhéritage)
-  - [Problème 3 : Interfaces, polymorphisme et injection de dépendances](#problème-3--interfaces-polymorphisme-et-injection-de-dépendances)
-  - [Problème 4 : Interfaces et implémentations de structures de données abstraites *Queue* et *Stack*](#problème-4--interfaces-et-implémentations-de-structures-de-données-abstraites-queue-et-stack)
-    - [Liens utiles](#liens-utiles)
-  - [Problème 5 : passage par copie et passage par référence](#problème-5--passage-par-copie-et-passage-par-référence)
-  - [Problème 6 : Passage par copie, passage par référence et clonage](#problème-6--passage-par-copie-passage-par-référence-et-clonage)
-  - [Problème 7 : L'API Reflection et les attributs PHP](#problème-7--lapi-reflection-et-les-attributs-php)
-  - [Mini-projet orienté objet](#mini-projet-orienté-objet)
-  - [Exercices supplémentaires (et corrigés)](#exercices-supplémentaires-et-corrigés)
+-   [Partie 1/4 Problèmes à résoudre en Programmation Orientée
+    Objet](#partie-14-problèmes-à-résoudre-en-programmation-orientée-objet)
+    -   [Problème 1 : Héritage simple](#problème-1---héritage-simple)
+    -   [Problème 2 : les précautions à prendre avec
+        l'héritage](#problème-2--les-précautions-à-prendre-avec-lhéritage)
+    -   [Problème 3 : Interfaces, polymorphisme et injection de
+        dépendances](#problème-3--interfaces-polymorphisme-et-injection-de-dépendances)
+    -   [Problème 4 : Interfaces et implémentations de structures de
+        données abstraites *Queue* et
+        *Stack*](#problème-4--interfaces-et-implémentations-de-structures-de-données-abstraites-queue-et-stack)
+        -   [Liens utiles](#liens-utiles)
+    -   [Problème 5 : passage par copie et passage par
+        référence](#problème-5--passage-par-copie-et-passage-par-référence)
+    -   [Problème 6 : Passage par copie, passage par référence et
+        clonage](#problème-6--passage-par-copie-passage-par-référence-et-clonage)
+    -   [Problème 7 : L'API Reflection et les attributs
+        PHP](#problème-7--lapi-reflection-et-les-attributs-php)
+    -   [Mini-projet orienté objet](#mini-projet-orienté-objet)
+    -   [Exercices supplémentaires (et
+        corrigés)](#exercices-supplémentaires-et-corrigés)
 
 ## Problème 1 : Héritage simple
 
@@ -66,9 +75,9 @@ leurs dimensions à la souris via un panneau de propriétés.
 1.  **Créez** une classe `Rectangle` disposant de :
 
 -   Deux propriétés : `width` (largeur) et `height` (hauteur) en pixels
--   Une méthode `setWidth(int $width): void` et `setHeight(int $height): void`
+-   Une méthode `setWidth`(int \$width) et `setHeight`(int \$height)
     permettant de redimensionner la forme de manière dynamique
--   Une méthode `area(): int` qui retourne l'aire du rectangle, en $$pixels\^2$$
+-   Une méthode `area()` qui retourne l'aire du rectangle, en pixels\^2
 
 > L'utilisateur de la classe doit pouvoir créer des objets avec les
 > dimensions qu'il désire. On souhaite à présent créer une classe
@@ -95,12 +104,12 @@ function stretchHorizontal(Rectangle $r, int $newWidth): void
 // 1. Test avec un vrai Rectangle de 4x5
 $rect = new Rectangle(4, 5);
 stretchHorizontal($rect, 10);
-echo "Aire du rectangle attendue : 200 (4 * 10 * 5) | Obtenue : " . $rect->area() . "\n";
+echo "Aire du rectangle attendue : 50 (10 * 5) | Obtenue : " . $rect->area() . "\n";
 
 // 2. Test avec un Square de 4x4 (qui est censé être substituable à Rectangle)
 $square = new Square(4); // largeur = 4, hauteur = 4
 stretchHorizontal($square, 10);
-echo "Aire du carré attendue : 160 (4 * 10 * 4) | Obtenue : " . $square->area() . "\n";
+echo "Aire du carré attendue : 40 (10 * 4) | Obtenue : " . $square->area() . "\n";
 ```
 
 **Qu'observez-vous ?**
@@ -109,7 +118,7 @@ echo "Aire du carré attendue : 160 (4 * 10 * 4) | Obtenue : " . $square->area()
 > orientée objet, la relation "Est un" (Is-A) ne valide pas
 > *automatiquement* l'héritage. L'héritage exige que **l'enfant respecte
 > le comportement du parent dans tous les scénarios possibles** (c'est
-> le [Principe de Substitution de Liskov, le "L" de *SOLID*. Lire l'excellente section
+> le [Principe de Substitution de Liskov, lire l'excellente section
 > "Exemple de violation du
 > LSP"](https://fr.wikipedia.org/wiki/Principe_de_substitution_de_Liskov)).
 > Si le comportement diverge (comme ici lors d'une modification de
