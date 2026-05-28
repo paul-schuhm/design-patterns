@@ -1,8 +1,9 @@
-# Design patterns
+# Programmation orientée objet et design patterns 
 
-- [Design patterns](#design-patterns)
+- [Programmation orientée objet et design patterns](#programmation-orientée-objet-et-design-patterns)
   - [Rappels Programmation Orientée Objet](#rappels-programmation-orientée-objet)
   - [PHP Moderne (8+) et *autoloading* avec Composer (PSR-4)](#php-moderne-8-et-autoloading-avec-composer-psr-4)
+  - [Design patterns](#design-patterns)
   - [Références](#références)
     - [Ouvrages](#ouvrages)
     - [Conférences](#conférences)
@@ -19,6 +20,10 @@ Supports de cours sur les *Design Patterns* et la programmation orientée objet,
 
 - [Accéder aux démos sur la migration d'un projet pour utiliser l'autoloading](./pratique/composer-autoloading/)
 - [Accéder aux exercices](./exercices-modern-php/)
+
+## Design patterns
+
+- [Accéder aux exercices](./exercices-dp/)
 
 ## Références
 
