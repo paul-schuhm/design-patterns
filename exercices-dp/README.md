@@ -65,7 +65,7 @@ Un·e utilisateur·rice du framework peut ensuite définir une classe
 `MyApplication` de type Application et `MyDocument` type de `Document`
 et développer son propre projet.
 
-`<img src="exercice2.2-uml.png" width="600">`{=html}
+<img src="exercice2.2-uml.png" width="600">
 
 [Utilisez le pattern Factory
 Method](https://refactoring.guru/design-patterns/factory-method) (aussi
