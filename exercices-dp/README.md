@@ -7,8 +7,8 @@
 - [Partie 3/4 Découverte et problèmes à résoudre avec des *Design Patterns*](#partie-34-découverte-et-problèmes-à-résoudre-avec-des-design-patterns)
   - [Problème 1 : Singleton](#problème-1--singleton)
   - [Problème 2 : *Factory Method*/*Virtual constructor*](#problème-2--factory-methodvirtual-constructor)
-  - [Problème 3 *Abstract Factory*](#problème-3-abstract-factory)
-  - [Problème 4 *Builder*](#problème-4-builder)
+  - [Problème 3 : *Abstract Factory*](#problème-3--abstract-factory)
+  - [Problème 4 : *Builder*](#problème-4--builder)
   - [Problème 5 : *Adapter*](#problème-5--adapter)
   - [Problème 6 : *Observer*](#problème-6--observer)
   - [Problèmes supplémentaires](#problèmes-supplémentaires)
@@ -85,7 +85,7 @@ nommé *Virtual Constructor*) pour implémenter ce framework.
 > il va manipuler (cela peut être un document image, un document texte,
 > etc.)
 
-## Problème 3 *Abstract Factory*
+## Problème 3 : *Abstract Factory*
 
 Nous disposons d'un kit de *widgets* pour construire des interfaces
 utilisateur qui supporte plusieurs *look and feel* standards (par ex.
@@ -122,7 +122,7 @@ valeurs associées.
 > Android: border-radius=0, border-color='black', bg-color='green',
 > bg-color--hover='purple'
 
-## Problème 4 *Builder*
+## Problème 4 : *Builder*
 
 Nous devons développer une application web pour une administration dans
 laquelle nous aurons besoin de nombreux formulaires avec un *grand
