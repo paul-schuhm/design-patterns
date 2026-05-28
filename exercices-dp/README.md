@@ -1,10 +1,10 @@
-# Partie 4/4 Problèmes à résoudre avec des *Design Patterns*
+# Partie 3/4 Découverte et problèmes à résoudre avec des *Design Patterns*
 
 > Dans les exercices et la littérature, le code "*client*" ou tout
 > simplement "*client*" **est le code qui va utiliser votre code**,
 > manipuler et consommer vos classes.
 
-- [Partie 4/4 Problèmes à résoudre avec des *Design Patterns*](#partie-44-problèmes-à-résoudre-avec-des-design-patterns)
+- [Partie 3/4 Découverte et problèmes à résoudre avec des *Design Patterns*](#partie-34-découverte-et-problèmes-à-résoudre-avec-des-design-patterns)
   - [Problème 1 : Singleton](#problème-1--singleton)
   - [Problème 2 : *Factory Method*/*Virtual constructor*](#problème-2--factory-methodvirtual-constructor)
   - [Problème 3 *Abstract Factory*](#problème-3-abstract-factory)
