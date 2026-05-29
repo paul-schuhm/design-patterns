@@ -158,6 +158,7 @@ Le système **calcule** les impôts et les cotisations sociales, puis produit **
 
 - Identité : Nom complet, régie d'activité et régie fiscal
 - Le CA mensuel HT
+- Le montant des indémnités (s'il y'en a)
 - Le montant des cotisations sociales
 - Le montant de l'impôt sur le revenu **ou** le revenu imposable (en fonction du régime fiscal)
 - Le CA mensuel TTC (après prélèvement des cotisations sociales et impôt sur le revenu si au régime fiscal du *Versement fiscal libératoire*)
