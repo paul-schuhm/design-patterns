@@ -100,7 +100,7 @@ L'outil propose les trois commandes suivantes :
 
 - `add` : enregistre une nouvelle microentreprise
 - `ls` : lister les microentreprises enregistrées
-- `dry_declare` : simule une déclaration de revenus mensuelle pour une autoentreprise et affiche un rapport
+- `dry-declare` : simule une déclaration de revenus mensuelle pour une autoentreprise et affiche un rapport
 
 ~~~bash
 php urssafc.php add "NOM_COMPLET" SIRET REGIME_ACTIVITE REGIME_FISCAL
