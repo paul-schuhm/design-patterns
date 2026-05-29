@@ -1,5 +1,16 @@
 # Partie 4/4 Problèmes de persistence avec l'API PDO
 
+-   [Partie 4/4 Problèmes de persistence avec l'API
+    PDO](#partie-44-problèmes-de-persistence-avec-lapi-pdo)
+    -   [Problème 1 : Utiliser une base de données SQLite pour un site
+        web](#problème-1--utiliser-une-base-de-données-sqlite-pour-un-site-web)
+        -   [Partie 1 : Le site web (accès en
+            lecture)](#partie-1--le-site-web-accès-en-lecture)
+        -   [Partie 2 : Publier des articles (écriture avec requêtes
+            préparées)](#partie-2--publier-des-articles-écriture-avec-requêtes-préparées)
+    -   [*Bonus* : Externalisation de la
+        configuration](#bonus--externalisation-de-la-configuration)
+
 ## Problème 1 : Utiliser une base de données SQLite pour un site web
 
 L'objectif est de créer un site web qui se connecte à [une base de
@@ -7,7 +18,7 @@ données SQLite locale](https://sqlite.org/), récupère des *articles* de
 blog, et les affiche sur la page d'accueil *du plus récent au plus
 ancien*.
 
-## Partie 1 : Le site web (accès en lecture)
+### Partie 1 : Le site web (accès en lecture)
 
 1.  **Vérifier** que l'extension `pdo_sqlite` [SQLite PDO Driver
     (PDO_SQLITE)](https://www.php.net/manual/en/ref.pdo-sqlite.php) est
@@ -105,7 +116,7 @@ exemple sur le port libre `8080`) avec le serveur *built-in* de PHP :
 php -S localhost:8080 -t public
 ```
 
-## Partie 2 : Publier des articles (écriture avec requêtes préparées)
+### Partie 2 : Publier des articles (écriture avec requêtes préparées)
 
 1.  **Modifier** la classe `Database.php` pour **ajouter une nouvelle
     méthode** capable de recevoir les données du formulaire et de les
