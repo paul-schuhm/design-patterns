@@ -68,7 +68,7 @@ sudo apt install php8.5-sqlite3
     2.  Une méthode `initialize(): bool` qui a pour fonction de :
         1.  **Créer** la table `posts` **si elle n'existe pas**. Sinon,
             elle ne fait rien. La table `posts` doit contenir les
-            attributs suivant :
+            attributs suivants :
             1.  `id` (clé primaire auto-incrémentée),
             2.  `title`,
             3.  `content`
@@ -78,7 +78,7 @@ sudo apt install php8.5-sqlite3
         2.  **Créer un jeu de données test** (3 ou 4 articles publiés à
             différentes dates)
     3.  Une méthode `latestPosts(): Post[]` qui récupère tous les
-        articles publiés du plus récent au plus ancien. La méthode
+        articles publiés **du plus récent au plus ancien**. La méthode
         récupère et retourne les données sous forme de tableau (dans un
         premier temps)
     4.  *Bonus* : utiliser [le pattern
@@ -90,8 +90,8 @@ sudo apt install php8.5-sqlite3
 
 6.  Dans le fichier `public/index.php` (site web), **créer** la page
     d'accueil (markup HTML) du site :
-    1.  Inclure l'*autoloader* généré par Composer
-    2.  Instancier l'objet `Database` :
+    1.  **Inclure** l'*autoloader* généré par Composer
+    2.  **Instancier** l'objet `Database` :
         1.  **Appeler** la méthode pour initialiser la base de données
             (ainsi, au premier chargement de la page, la base se crée et
             se remplit toute seule)
@@ -137,6 +137,21 @@ php -S localhost:8080 -t public
     vers `/` pour éviter que l'article ne soit renvoyé en double
     (re-soumission du formulaire) si l'utilisateur·ice rafraîchit la
     page et pour afficher la page d'accueil.
+
+Pour rediriger le client, il faut que le serveur retourne une réponse
+HTTP avec un [code status 302 (redirection
+temporaire)](https://developer.mozilla.org/fr/docs/Web/HTTP/Reference/Status/302)
+et [l'en-tête
+`Location`](https://developer.mozilla.org/fr/docs/Web/HTTP/Reference/Headers/Location).
+En PHP :
+
+``` php
+//Utiliser la fonction native header()
+//@link https://www.php.net/manual/en/function.header.php
+//Fixe le code status à 302 et définit le header Location pour rediriger le client
+//A reception, le navigateur va être redirigé en réémettant une requête GET /
+header("Location: /")
+```
 
 Contraintes et propriétés du système :
 
