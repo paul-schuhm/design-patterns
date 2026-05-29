@@ -247,7 +247,7 @@ Il existe **deux régimes fiscaux** pour les autoentreprises (régime "microfisc
 
 ## Calcul des indemnités de frais d'exploitation
 
-Depuis mars, des *indemnités de frais d'exploitation* (dispositif d'allègement financier temporaire basé sur le montant brut de l'activité) ont été mise en place  :
+Depuis mars, des *indemnités de frais d'exploitation* (dispositif d'allègement financier temporaire basé sur le montant brut de l'activité) ont été mises en place  :
 
 - Le régime *BIC Vente* a droit à une prime fixe de stockage de 200 EUROS **si le CA HT dépasse 3 000 EUROS**
 - Le régime *BIC* ne peut prétendre à **aucune aide** pour l'instant
