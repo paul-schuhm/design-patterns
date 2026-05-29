@@ -8,8 +8,8 @@
             lecture)](#partie-1--le-site-web-accès-en-lecture)
         -   [Partie 2 : Publier des articles (écriture avec requêtes
             préparées)](#partie-2--publier-des-articles-écriture-avec-requêtes-préparées)
-    -   [*Bonus* : Externalisation de la
-        configuration](#bonus--externalisation-de-la-configuration)
+        -   [*Bonus* : Externalisation de la
+            configuration](#bonus--externalisation-de-la-configuration)
 
 ## Problème 1 : Utiliser une base de données SQLite pour un site web
 
@@ -148,7 +148,7 @@ Contraintes et propriétés du système :
     effectuée, **le nouvel article apparaît immédiatement tout en haut
     de la liste**
 
-## *Bonus* : Externalisation de la configuration
+### *Bonus* : Externalisation de la configuration
 
 On souhaite que le chemin du fichier de base de données n'apparaissent
 plus *en dur* dans la classe `Database` mais qu'elle soit *injectée à
