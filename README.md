@@ -5,6 +5,7 @@
   - [PHP Moderne (8+) et *autoloading* avec Composer (PSR-4)](#php-moderne-8-et-autoloading-avec-composer-psr-4)
   - [Design patterns](#design-patterns)
   - [PDO](#pdo)
+  - [Évaluation](#évaluation)
   - [Références](#références)
     - [Ouvrages](#ouvrages)
     - [Conférences](#conférences)
@@ -29,6 +30,10 @@ Supports de cours sur les *Design Patterns* et la programmation orientée objet,
 ## PDO
 
 - [Accéder aux exercices](./exercices-pdo/)
+
+## Évaluation
+
+- [Accéder au sujet d'évaluation](./evaluation/)
 
 ## Références
 

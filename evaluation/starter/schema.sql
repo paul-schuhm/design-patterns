@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS contractor (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    full_name TEXT NOT NULL,
+    siret TEXT NOT NULL UNIQUE,
+    activity TEXT NOT NULL,
+    tax_system TEXT NOT NULL,
+    created_at TEXT DEFAULT CURRENT_DATE
+);
