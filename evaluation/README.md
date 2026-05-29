@@ -67,7 +67,7 @@ Le **respect des consignes** et le format des documents (documents bien formés,
 
 L'évaluation est ramenée sur **20 points**.
 
-> Durée approximative : 2h
+> Durée approximative : 3h
 
 ## Problème à résoudre (18 points)
 
