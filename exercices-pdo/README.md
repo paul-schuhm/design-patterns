@@ -91,11 +91,12 @@ sudo apt install php8.5-sqlite3
 
 Contraintes et propriétés du système :
 
--   N'utiliser aucun require (hormis celui de l'*autoload*)
--   Ne pas planter si la base de données blog.db n'existe pas encore
--   Le tri est fait en SQL (via la requête) et **non en PHP**
+-   N'utiliser aucun `require` (hormis celui de l'*autoload*)
+-   Ne pas crasher si la base de données `blog.db` n'existe pas encore
+-   Le tri est fait **en SQL** (via la requête) et **non en PHP**
 -   L'affichage est protégé contre les injections de scripts (attaque
-    XSS), grâce à l'échappement correct des données issues de la base.
+    XSS), grâce à **l'échappement correct des données issues de la
+    base**.
 
 Pour tester et développer votre site web, **servez-le** en local (par
 exemple sur le port libre `8080`) avec le serveur *built-in* de PHP :
@@ -130,9 +131,9 @@ Contraintes et propriétés du système :
 
 -   La requête d'insertion utilise obligatoirement les requêtes
     préparées (`$pdo->prepare()` et `$stmt->execute()`)
--   Le site ne plante pas et n'insère pas de ligne vide si on clique sur
-    *"Envoyer"* avec des champs vides
--   Une fois le formulaire soumis et la redirection vers la home
+-   Le site ne plante pas et **n'insère pas de ligne vide** si on clique
+    sur *"Envoyer"* avec des champs vides
+-   Une fois le formulaire soumis et la redirection vers la *home*
     effectuée, **le nouvel article apparaît immédiatement tout en haut
     de la liste**
 
@@ -148,7 +149,10 @@ des variables d'environnement pour configurer le site web.
     chemin vers le fichier SQLite (relatif à la racine du projet)
 3.  **Ajouter** le code nécessaire pour utiliser la variable
     `PATH_DATABASE` dans l'application. Elle sera disponible dans la
-    superglobale `$_ENV` de PHP.
+    *superglobale* `$_ENV` de PHP. Pour cela, vous pouvez installer et
+    utiliser le paquet [**paquet
+    symfony/dotenv**](https://packagist.org/packages/symfony/dotenv)
+    *via* Composer.
 
 Si le fichier `.env` est manquant ou si la variable d'environnement
 `DB_DATABASE` est vide, l'application doit lever une exception et
