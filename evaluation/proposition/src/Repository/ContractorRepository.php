@@ -54,7 +54,6 @@ class ContractorRepository
         $stmt = $this->pdo->prepare("SELECT * FROM contractor WHERE id = :id");
         $stmt->execute([':id' => $id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
         if (!$row) return null;
         return $this->mapRowToContractor($row);
     }

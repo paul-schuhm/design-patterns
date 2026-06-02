@@ -33,6 +33,7 @@ abstract class AbstractActivityStrategy
             case 'ps':
                 $reportData['revenu_imposable'] = $caHt * (1 - $this->abatementRate());
                 $reportData['ca_ttc'] = $caHt - $social_tax + $subsidy;
+                break;
             default:
                 throw new InvalidArgumentException("Régime fiscal inconnu");
         }

@@ -10,7 +10,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 // Remarque : définir plutôt des Enum.
 define('SIRET_LENGTH', 14);
 define('VALID_ACTIVITIES', ['bnc', 'bic', 'bic-vente']);
-define('VALID_TAXSYSTEMS', ['ps', 'vfl']);
+define('VALID_TAX_SYSTEMS', ['ps', 'vfl']);
 
 //A refactoriser (extraire et placer dans un module)
 $pdo = new PDO("sqlite:" . __DIR__ . "/urssaf.db");
@@ -21,7 +21,7 @@ $pdo->exec("CREATE TABLE IF NOT EXISTS contractor (
     siret TEXT NOT NULL UNIQUE,
     activity TEXT NOT NULL,
     tax_system TEXT NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    created_at TEXT DEFAULT CURRENT_DATE
 );");
 
 // Extraction des arguments passés au script
@@ -41,10 +41,10 @@ switch ($command) {
         // Valider les input (SIRET, activity, taxSystem)...
 
         $isValidActivity = in_array($activity, VALID_ACTIVITIES);
-        $isValidTaxSystem = in_array($taxSystem, VALID_TAXSYSTEMS);
+        $isValidTaxSystem = in_array($taxSystem, VALID_TAX_SYSTEMS);
         $isValidSiret = strlen($siret) === SIRET_LENGTH;
         $isValidInput = $isValidSiret && $isValidTaxSystem && $isValidActivity;
-        
+
         if (!$isValidInput) {
             echo "Erreur: Arguments invalides pour'add'.\n";
             exit(1);
