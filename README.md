@@ -50,6 +50,7 @@ Supports de cours sur les *Design Patterns* et la programmation orientée objet,
 
 ### Conférences
 
+- [Seminar with Alan Kay on Object Oriented Programming](https://www.youtube.com/watch?v=QjJaFG63Hlo), séminaire d'Alan Kay donné dans les années 80 sur les concepts fondamentaux de la programmation orientée objet
 - [Simple made Easy](https://www.youtube.com/watch?v=LKtk3HCgTa8&t=2593s), excellente conférence de Rich Hickey (2011) sur la différence entre *simplicité* et *facilité*, sur les sources de la complexité logicielle et sur les choix de design à faire pour construire des systèmes *simples*
 - [The computer revolution hasnt happened yet](https://www.youtube.com/watch?v=oKg1hTOQXoY), conférence d'[Alan Kay](https://fr.wikipedia.org/wiki/Alan_Kay) at OOPSLA 1997, "père" de la programmation orientée "objet", toujours très transversal, sur les origines de la programmation orientée objet et ses ambitions initiales (produire des systèmes à grande échelle)
 - [Uncle Bob SOLID principles](https://www.youtube.com/watch?v=QHnLmvDxGTY), très bonne conférence de Robert C Martin ("Uncle Bob") sur [les principes SOLID](https://fr.wikipedia.org/wiki/SOLID_(informatique)) et surtout sur ce qu'apporte le paradigme objet (le polymorphisme), Septembre 2014, Yale School of Managment
