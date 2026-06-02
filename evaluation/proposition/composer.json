@@ -1,0 +1,16 @@
+{
+    "name": "paul/urssafc",
+    "description": "Un système de gestion des déclarations mensuelles des autoentreprises",
+    "autoload": {
+        "psr-4": {
+            "Urssaf\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "paul schuhmacher",
+            "email": "contact@pschuhmacher.com"
+        }
+    ],
+    "require": {}
+}
